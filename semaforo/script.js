@@ -2,28 +2,34 @@ const red = document.querySelector('.red');
 const yellow = document.querySelector('.yellow');
 const green = document.querySelector('.green');
 
+let time = 0;
+
 function start() {
   red.classList.add('active')
   setTimeout(function () {
     yellow.classList.add('active')
-  },2000)
+  },1000)
 
   setTimeout(function () {
     green.classList.add('active')
-  },4000)
+  },2000)
+
+  time = setTimeout(function reiniciar() {
+    red.classList.remove('active')
+    yellow.classList.remove('active')
+    green.classList.remove('active')
+  
+    start()
+  },3000)
 }
 
-// if(red.classList.contains('active') && yellow.classList.contains('active') && green.classList.contains('active')){
-//   red.classList.remove('active')
-//   yellow.classList.remove('active')
-//   green.classList.remove('active')
-
-//   setTimeout(function () {
-//     start()
-//   },5000)
-// }
-
 function color(color) {
+  red.classList.remove('active')
+  yellow.classList.remove('active')
+  green.classList.remove('active')
+
+  clearTimeout(time)
+
   switch (color) {
     case 'red':
       red.classList.add('active')
